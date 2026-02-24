@@ -21,6 +21,7 @@ test.beforeEach(async () => {
     await page.goto('https://the-internet.herokuapp.com/')
     // pause execution
     console.log('Befor each lunched new page')
+    await page.pause()
 })
 
 test.afterEach(async () => {
@@ -37,9 +38,38 @@ test.afterAll(async () => {
     console.log('After all hook closed browser')
 })
 
-test.only('A/B test', async () => {
+test('A/B test', async () => {
     // navigate to the A/B test page
     await page.click('text="A/B Testing"')
     const header=await page.textContent('h3')
     expect(header).toBe('A/B Test Variation 1')
 })
+
+test('checkbox verification', async () => {
+    await page.click('text="Checkboxes"')
+    const checkbox = await page.isChecked('input[type="checkbox"]:first-child')
+    expect(checkbox).toBe(false)
+})
+
+
+test.only('geolocation setting in context and verification',async () => {
+    context = await browser.newContext({
+        permissions: ['geolocation'],
+        geolocation: {
+            latitude: 37.774929,
+            longitude: -122.419416,
+            viewport: {
+                width: 1280,
+                height: 720,
+            }
+        }
+    })
+    page = await context.newPage()
+    await page.pause()
+    await page.goto('https://the-internet.herokuapp.com/geolocation')
+    await page.click('button')
+    const lat = await page.textContent('#lat-value')
+    const lon = await page.textContent('#long-value')
+    expect(parseFloat(lat)).toBeCloseTo(37.774929)
+    expect(parseFloat(lon)).toBeCloseTo(-122.419416)
+})    
