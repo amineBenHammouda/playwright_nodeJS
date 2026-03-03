@@ -12,7 +12,7 @@ test.describe('describe block for hoocks', () => {
 
     test.beforeAll(async () => {
         // lunch chrome browser befor all tests
-        browser = await chromium.launch({ headless: true })
+        browser = await chromium.launch({ headless: false })
         console.log('Befor hook lunched chromium browser')
     })
     
@@ -46,8 +46,8 @@ test.describe('describe block for hoocks', () => {
     test('A/B test', async () => {
         // navigate to the A/B test page
         await page.click('text="A/B Testing"')
-        const header=await page.textContent('h3')
-        expect(header).toBe('A/B Test Variation 1')
+        const header = await page.textContent('h3')
+        expect(['A/B Test Control', 'A/B Test Variation 1']).toContain(header)
     })
     
     test('checkbox verification', async () => {
@@ -77,6 +77,5 @@ test.describe('describe block for hoocks', () => {
         const lon = await page.textContent('#long-value')
         expect(parseFloat(lat)).toBeCloseTo(37.774929)
         expect(parseFloat(lon)).toBeCloseTo(-122.419416)
-    })
-    
+    })    
 })
