@@ -12,7 +12,9 @@ test.describe('All My Tests', () => {
         await page.waitForURL('https://www.saucedemo.com/inventory.html')
     })
 
-    
+    test.afterAll(async () => {
+        console.log('After tests')
+    })
 
     test('home page', async ({ page }) => {
 
