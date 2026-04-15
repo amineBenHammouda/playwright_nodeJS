@@ -16,4 +16,9 @@ export default class LoginPage {
         await this.actions.fill('#password', password)
         await this.actions.click('button[type="submit"]')
     }
+
+    async assertErrorMessage(errorMessage) {
+        const message = await this.actions.getText('#flash')
+        expect(message).toContain(errorMessage)
+    }
 }
