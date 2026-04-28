@@ -1,12 +1,18 @@
-import Login from './login'
-import SecurePage from './SecurePage'
-import CheckboxesPage from './CheckboxesPage'
+import { LoginPage } from './loginPage.js'
+import { HomePage } from './homePage.js'
 
-export default class PomManager {
+export class PomManager {
     constructor(page) {
         this.page = page
-        this.login = new Login(page)
-        this.securePage = new SecurePage(page)
-        this.checkboxesPage = new CheckboxesPage(page) 
+        this.loginPage = new LoginPage(page)
+        this.homePage = new HomePage(page)
+    }
+
+    getLoginPage() {
+        return this.loginPage
+    }
+
+    getHomePage() {
+        return this.homePage
     }
 }
