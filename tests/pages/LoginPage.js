@@ -6,6 +6,7 @@ class LoginPage {
         this.password = page.locator('#password');
         this.loginButton = page.locator('#submit');
         this.successMsg = page.getByText('Logged In Successfully');
+        this.errorMessage = page.locator('#error');
     }
 
     async launchURL(url) {

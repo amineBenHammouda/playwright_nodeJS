@@ -34,3 +34,7 @@ Given('I navigate to {string}', async ({}, url) => {
     const message = await loginPage.getSuccessMsg();
     expect(message).toContain(successMsg);
   });
+
+  Then('I should se the error message {string}', async ({}, errorMessage) => {
+    await expect(loginPage.errorMessage).toHaveText(errorMessage);
+  });
