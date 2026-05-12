@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "regressionTest": "playwright test --grep @regression",
+    "smokeTest": "playwright test --grep @smoke",
+    "e2e": "playwright test"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

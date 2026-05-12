@@ -1,7 +1,9 @@
 Feature: Login functionality
 
-the login functionality is a crucial aspect of any web application.
+#the login functionality is a crucial aspect of any web application.
 
+
+@smoke
 Scenario: User can login with valid credentials
     Given I navigate to "https://practicetestautomation.com/practice-test-login/"
     And I enter username "student"
@@ -9,7 +11,7 @@ Scenario: User can login with valid credentials
     When I click the login button
     Then I should se the page containing "Logged In Successfully"
 
-
+@regression
 Scenario Outline: Fail login with invalid credentials
     Given I navigate to "https://practicetestautomation.com/practice-test-login/"
     And I enter username "<username>"
